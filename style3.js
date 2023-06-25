@@ -1,0 +1,17 @@
+var item=document.querySelector('#items');
+item.parentElement.style.backgroundColor='gray';
+item.children[1].style.backgroundColor='red';
+console.log(item.firstChild);
+console.log(item.firstElementChild);
+item.firstElementChild.textContent='Nishwal';
+console.log(item.lastElementChild);
+console.log(item.nextElementSibling);
+console.log(item.previousSibling);
+console.log(item.previousElementSibling);
+item.previousElementSibling.style.color='red';
+var divnew=document.createElement('div');
+var newdivText=document.createTextNode('HEllo');
+divnew.appendChild(newdivText);
+var container=document.querySelector('header .container');
+var h1=document.querySelector('header h1');
+container.insertBefore(divnew,h1);
