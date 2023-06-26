@@ -1,9 +1,18 @@
 
 document.addEventListener('submit', store);
  function store(e){
-    var name =document.getElementById('name').value;
-    var email=document.getElementById('email').value;
-    localStorage.setItem('name',`${name}`);
-    localStorage.setItem('email',`${email}`);
+   
+    
+    let myobj= {
+      name: document.getElementById('name').value ,
+      email: document.getElementById('email').value
+
+   }
+   let myserial=JSON.stringify(myobj);
+   localStorage.setItem('user',myserial);
+
+
+
+   
 
  }
