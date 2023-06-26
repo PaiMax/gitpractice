@@ -7,10 +7,12 @@ itemList.addEventListener('click',removeItem);
 
 function additem(e){
     e.preventDefault();
-    var value=document.getElementById('item').value;
+    var value1=document.getElementById('item').value;
+    var value2=document.getElementById('item2').value;
+
     var li =document.createElement('li');
     li.className='list-group-item';
-    li.appendChild(document.createTextNode(value));
+    li.append(document.createTextNode(value1),document.createTextNode(value2));``
     
     
     var deletebtn=document.createElement('button');
@@ -34,11 +36,14 @@ function removeItem(e){
 }
 function filterItems(e){
     var text=e.target.value.toLowerCase();
+    
     var items=itemList.getElementsByTagName('li');
     Array.from(items).forEach(function(item){
         var itemName=item.firstChild.textContent;
+        var des=item.childNodes[1].textContent;
         
-        if(itemName.toLowerCase().indexOf(text) != -1){
+        
+        if(itemName.toLowerCase().indexOf(text) != -1||des.toLowerCase().indexOf(text)!= -1){
             item.style.display='block';
 
         }
@@ -50,5 +55,7 @@ function filterItems(e){
 
 
     });
+
 }
+
 
