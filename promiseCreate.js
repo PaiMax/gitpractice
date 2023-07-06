@@ -19,7 +19,12 @@ getbutter=getpopcorn.then((t)=>{
 
 
 })
-getbutter.then((t)=>console.log(t));
+getColdDrinks=getbutter.then((t)=>{
+    console.log('we go the butter');
+    return new Promise((resolve,reject)=>resolve(`${t} cold drinks`));
+
+});
+getColdDrinks.then((t)=>console.log(t));
 console.log('person4: shows ticket');
 console.log('person5: shows ticket');
 
