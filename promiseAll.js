@@ -24,25 +24,40 @@ function deletepost(){
 }
 function printpost(){
     return new Promise((resolve,reject)=>{
-        setTimeout( function(){
+        
             console.log(posts)
             resolve();
-        },2000);
+       
         
 
     })
 }
-    
-    
-    
-    const promise1 = createpost('post1');
-    const promise2=updateLastUserActivityTime();
-    const promise3 = createpost('post2');
-    const promise4=updateLastUserActivityTime();
-    
+const par=async ()=>{
+    let post1=await createpost('post1');
+    console.log(post1);
+    let useractivityupdate1= await updateLastUserActivityTime();
+    console.log(useractivityupdate1);
+    let post2=await createpost('post2');
+    console.log(post2);
+    let useractivityupdate2= await updateLastUserActivityTime();
+    console.log(useractivityupdate2);
 
 
-Promise.all([promise1,promise2,promise3,promise4]).then((values)=>console.log(values))
-const promise5 =deletepost();
-const promise6=printpost();
-Promise.all([promise5,promise6]);
+    
+    let delet=await deletepost();
+    let print=await printpost();
+
+
+
+
+
+   
+}
+par();
+
+
+
+    
+    
+    
+   
