@@ -81,3 +81,15 @@ function removeUserFromScreen(email) {
     parentNode.removeChild(deleteChild);
  }
 }
+window.addEventListener('DOMContentLoaded',()=>{
+    axios.get('https://crudcrud.com/api/2405a8a8a6214630ba0c3484866ada3a/userdata')
+    .then((response)=>{
+        console.log(response);
+        for(var i=0;i<response.data.length;i++){
+            showUsersOnScreen(response.data[i]); 
+
+        }
+    })
+    .catch((err)=>console.log(err))
+
+})
