@@ -3,6 +3,8 @@ const myform = document.getElementById('my-form');
     const emailInput = document.querySelector("#email");
     const phoneInput= document.querySelector('#phonenumber');
     const userList = document.querySelector("#users");
+    var id;
+    const userIncrocs={};
     
     myform.addEventListener("submit", onSubmit);
     
@@ -19,10 +21,11 @@ const myform = document.getElementById('my-form');
             Email: emailInput.value,
             Number: phoneInput.value
         }
-        var id;
+        
         axios.post('https://crudcrud.com/api/2405a8a8a6214630ba0c3484866ada3a/userdata',userDetails)
         .then((response)=>{console.log(response)
         id=response.data._id
+
         console.log(id);
         console.log(typeof response.data._id);
     })
@@ -71,7 +74,12 @@ function editDetails(email,name,phonenumber) {
 }
 
 function deleteUser(email){
-    localStorage.removeItem(email);
+    const idofuser=userIncrocs[email];
+    axios.delete(`https://crudcrud.com/api/2405a8a8a6214630ba0c3484866ada3a/userdata/${idofuser}`)
+    .then((response)=>console.log("user deleted"))
+    .catch((error)=>console.log(error));
+
+    //localStorage.removeItem(email);
     removeUserFromScreen(email);
 }
 function removeUserFromScreen(email) {
@@ -85,7 +93,9 @@ window.addEventListener('DOMContentLoaded',()=>{
     axios.get('https://crudcrud.com/api/2405a8a8a6214630ba0c3484866ada3a/userdata')
     .then((response)=>{
         console.log(response);
+
         for(var i=0;i<response.data.length;i++){
+            userIncrocs[response.data[i].Email]=response.data[i]._id;
             showUsersOnScreen(response.data[i]); 
 
         }
